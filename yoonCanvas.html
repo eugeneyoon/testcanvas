@@ -6,21 +6,47 @@
 
     <style type="text/css">
       canvas{
+        display: inline;
         border: 1px solid black;
+      }
+      h1{
+        font-family: Verdana;
+        display: inline-block;
+      }
+      #text, #controls{
+        display: inline-block;
+        font-family: Verdana;
+        font-size: 12px;
+        line-height: 0.5em;
       }
     </style>
   </head>
-
 
   <body>
 
     <h1>Eugene's Canvas</h1>
 
+    <div id="text">
+      <p>Welcome to my canvas! Please draw things by dragging the mouse.</p>
+      <p>You can select a new color with this Color Picker: <input type="color" id="colorPicker" value="#ff0000"></p>
+    </div>
+
+
     <canvas id="myCanvas">
       This is my canvas, please draw things!
     </canvas>
 
-    <input type="color" id="colorPicker" value="#ff0000">
+    <div id="controls">
+      <p>Controls</p>
+        <p>"r" = red</p>
+        <p>"g" = green</p>
+        <p>"b" = blue</p>
+        <p>"y" = yellow</p>
+        <p>"p" = purple</p>
+        <p>spacebar = clear</p>
+        <p>up arrow = bigger pen</p>
+        <p>down arrow = smaller pen</p>
+    </div>
 
     <script>
       var canvas = document.getElementById("myCanvas");
@@ -32,7 +58,7 @@
 
       // set size of canvas on resize (and by default)
       function size() {
-  			canvas.width = window.innerWidth * 0.8;
+  			canvas.width = window.innerWidth * 0.6;
   			canvas.height = window.innerHeight * 0.8;
   		}
       size();
