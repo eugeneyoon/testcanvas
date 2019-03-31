@@ -8,13 +8,6 @@
       canvas{
         border: 1px solid black;
       }
-
-      /* @media screen and (max-width: 700px) {
-        canvas{
-          width: 350px;
-          height: 600px;
-        } */
-      }
     </style>
   </head>
 
@@ -23,11 +16,9 @@
 
     <h1>Eugene's Canvas</h1>
 
-    <div>
-      <canvas id="myCanvas">
-        This is my canvas, please draw things!
-      </canvas>
-    </div>
+    <canvas id="myCanvas">
+      This is my canvas, please draw things!
+    </canvas>
 
     <input type="color" id="colorPicker" value="#ff0000">
 
@@ -37,9 +28,9 @@
       var x;
       var y;
       var color = "#f00";
-      var width = 1;
+      var width = 10;
 
-      // set size of canvas on resize (and by default) 
+      // set size of canvas on resize (and by default)
       function size() {
   			canvas.width = window.innerWidth * 0.8;
   			canvas.height = window.innerHeight * 0.8;
