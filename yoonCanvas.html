@@ -5,14 +5,19 @@
     <title>Eugene's Canvas</title>
 
     <style type="text/css">
-      canvas{
+      /* canvas{
         border: 1px solid black;
+      } */
+
+      div{
+        overflow: hidden;
       }
 
-      @media screen and (max-width: 800px) {
+      /* @media screen and (max-width: 700px) {
         canvas{
-          height: 100vw;
-        }
+          width: 350px;
+          height: 600px;
+        } */
       }
     </style>
   </head>
@@ -22,9 +27,11 @@
 
     <h1>Eugene's Canvas</h1>
 
-    <canvas id="myCanvas" width="1200px" height="400px">
-      This is my canvas, please draw things!
-    </canvas>
+    <div>
+      <canvas id="myCanvas" width="1200px" height="400px">
+        This is my canvas, please draw things!
+      </canvas>
+    </div>
 
     <input type="color" id="colorPicker" value="#ff0000">
 
@@ -36,6 +43,7 @@
       var color = "#f00";
       var width = 1;
 
+      // put down a dot mouse
       function ink(mouse){
         // console.log(mouse);
         context.beginPath();
@@ -46,7 +54,26 @@
         y = mouse.offsetY;
       }
       canvas.addEventListener("mousemove", ink, false);
-      canvas.addEventListener("touchmove", ink, false);
+
+      // put down a dot on touch
+      function inkTouch(touch){
+        console.log(touch)
+        context.beginPath();
+        context.arc(x, y, width, 0, Math.PI * 2);
+        context.fillStyle = color;
+        context.fill();
+        x = touch.touches[0].clientX;
+        y = touch.touches[0].clientY;
+      }
+      canvas.addEventListener("touchstart", inkTouch, false);
+      canvas.addEventListener("touchmove", inkTouch, false);
+
+      // stop ink touch
+      function inkStop(touch){
+        x = false;
+        y = false;
+      }
+      canvas.addEventListener("touchend", inkStop, false);
 
       function changeStuff(keystroke){
         // console.log(keystroke);
@@ -87,14 +114,14 @@
 
       // color picker
       var colorPicker = document.getElementById("colorPicker");
-
+      // get value of selected color
       function changeColor(ragaca){
         // console.log(ragaca);
         color = ragaca.target.value;
       }
       colorPicker.addEventListener("input", changeColor, false);
-      colorPicker.addEventListener("touchmove", changeColor, false);
 
+      // clear canvas on orientation change
       function clearCanvas(){
         context.clearRect(0, 0, canvas.width, canvas.height);
       }
