@@ -5,12 +5,8 @@
     <title>Eugene's Canvas</title>
 
     <style type="text/css">
-      /* canvas{
+      canvas{
         border: 1px solid black;
-      } */
-
-      div{
-        overflow: hidden;
       }
 
       /* @media screen and (max-width: 700px) {
@@ -28,7 +24,7 @@
     <h1>Eugene's Canvas</h1>
 
     <div>
-      <canvas id="myCanvas" width="1200px" height="400px">
+      <canvas id="myCanvas">
         This is my canvas, please draw things!
       </canvas>
     </div>
@@ -42,6 +38,14 @@
       var y;
       var color = "#f00";
       var width = 1;
+
+      // set size of canvas on resize (and by default) 
+      function size() {
+  			canvas.width = window.innerWidth * 0.8;
+  			canvas.height = window.innerHeight * 0.8;
+  		}
+      size();
+      window.addEventListener('resize', size, false);
 
       // put down a dot mouse
       function ink(mouse){
