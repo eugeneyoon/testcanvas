@@ -7,20 +7,15 @@
     <style type="text/css">
       h1{
         font-family: Verdana;
-        font-size: 18px;
+        font-size: 24px;
       }
       #text{
         font-family: Verdana;
-        font-size: 12px;
-        line-height: 0.5em;
+        font-size: 18px;
       }
       canvas{
         border: 1px solid black;
       }
-      #controls{
-        font-family: Verdana;
-        font-size: 12px;
-        line-height: 0.5em;
     </style>
   </head>
 
@@ -30,24 +25,12 @@
 
     <div id="text">
       <p>You can select a new color with this Color Picker: <input type="color" id="colorPicker" value="#ff0000"></p>
+      <p>You can also select r, g, b, y, or p on the keyboard to change the colors. Spacebar will clear the canvas and the up and down arrow keys will adjust the brush size.</p>
     </div>
-
 
     <canvas id="myCanvas">
       This is my canvas, please draw things!
     </canvas>
-
-    <div id="controls">
-      <p>Controls</p>
-        <p>"r" = red</p>
-        <p>"g" = green</p>
-        <p>"b" = blue</p>
-        <p>"y" = yellow</p>
-        <p>"p" = purple</p>
-        <p>spacebar = clear</p>
-        <p>up arrow = bigger pen</p>
-        <p>down arrow = smaller pen</p>
-    </div>
 
     <script>
       var canvas = document.getElementById("myCanvas");
