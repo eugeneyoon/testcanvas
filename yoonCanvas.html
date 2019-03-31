@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Eugene's Canvas</title>
+
+    <style type="text/css">
+      canvas{
+        border: 1px solid black;
+      }
+
+      @media screen and (max-width: 800px) {
+        canvas{
+          height: 100vw;
+        }
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+    <h1>Eugene's Canvas</h1>
+
+    <canvas id="myCanvas" width="1200px" height="400px">
+      This is my canvas, please draw things!
+    </canvas>
+
+    <input type="color" id="colorPicker" value="#ff0000">
+
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      var x;
+      var y;
+      var color = "#f00";
+      var width = 1;
+
+      function ink(mouse){
+        // console.log(mouse);
+        context.beginPath();
+        context.arc(x, y, width, 0, Math.PI * 2);
+        context.fillStyle = color;
+        context.fill();
+        x = mouse.offsetX;
+        y = mouse.offsetY;
+      }
+      canvas.addEventListener("mousemove", ink, false);
+      canvas.addEventListener("touchmove", ink, false);
+
+      function changeStuff(keystroke){
+        // console.log(keystroke);
+        // change color
+        if (keystroke.key == "b"){
+          color = "#00f";
+        }
+        if (keystroke.key == "g"){
+          color = "#0f0";
+        }
+        if (keystroke.key == "r"){
+          color = "#f00";
+        }
+        if (keystroke.key == "y"){
+          color = "#ff0";
+        }
+        if (keystroke.key == "p"){
+          color = "#800080";
+        }
+
+        // change size
+        if (keystroke.key == "ArrowUp"){
+          width += 1;
+        }
+        if (keystroke.key == "ArrowDown"){
+          width -= 1;
+          if (width < 1){
+            width = 1;
+          }
+        }
+
+        // clear canvas
+        if (keystroke.key == " "){
+          context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      window.addEventListener("keydown", changeStuff, false);
+
+      // color picker
+      var colorPicker = document.getElementById("colorPicker");
+
+      function changeColor(ragaca){
+        // console.log(ragaca);
+        color = ragaca.target.value;
+      }
+      colorPicker.addEventListener("input", changeColor, false);
+      colorPicker.addEventListener("touchmove", changeColor, false);
+
+      function clearCanvas(){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      window.addEventListener("orientationchange", clearCanvas, false);
+
+    </script>
+
+  </body>
+
+</html>
